@@ -103,17 +103,17 @@ export default function App() {
 	
 	İpucu: Formla etkileşim halindeyken, formla ne *olması gerektiğini* (ve form kontrol edilseydi ne olacağını) anlamak istiyorsanız: console.log(formData)
 */
-
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    privacyResponse: 'yes',
-    rating: '10',
-    marketingResponse: true,
-    wantsToSubmit: false,
-  })
+const [formData, setFormData] = useState({
+  firstName: '',
+  lastName: '',
+  email: '',
+  privacyResponse: 'yes',
+  rating: '10',
+  marketingResponse: true,
+  wantsToSubmit: false,
+})
 console.log(formData);
+
   return (
     <form onSubmit={fakeSubmit}>
       <h1>Dünyanın En Sinir Bozucu Formu</h1>
@@ -152,8 +152,8 @@ console.log(formData);
               type='radio'
               id='yes'
               name='privacyResponse'
-              checked
               value='yes'
+              checked={formData.privacyResponse === 'yes'}
               onChange={handleChange}
             />
             Evet
@@ -164,7 +164,8 @@ console.log(formData);
               type='radio'
               id='no'
               name='privacyResponse'
-              value='no'
+              value="no"
+              checked={formData.privacyResponse === 'no'}
               defaultChecked
               onChange={handleChange}
             />
@@ -177,6 +178,7 @@ console.log(formData);
               id='absolutely'
               name='privacyResponse'
               value='absolutely'
+              checked={formData.privacyResponse === 'absolutely'}
               onChange={handleChange}
             />
             Kesinlikle
@@ -190,7 +192,7 @@ console.log(formData);
           değerlendirirsiniz?
         </legend>
 
-        <select onChange={handleChange} name='rating' value='10'>
+        <select onChange={handleChange} name='rating' value={formData.rating}>
           <option value='1'>1</option>
           <option value='2'>2</option>
           <option value='3'>3</option>
@@ -204,11 +206,11 @@ console.log(formData);
         </select>
       </fieldset>
 
-      <label className='marketing-label'>
+      <label className='marketing-label' >
         <input
           type='checkbox'
           name='marketingResponse'
-          checked
+          checked={formData.marketingResponse}
           onChange={handleChange}
         />
 
